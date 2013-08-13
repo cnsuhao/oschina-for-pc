@@ -140,7 +140,7 @@ class Service(QObject):
             AppProperty.HomeSpaceHtml = data
             soup = BeautifulSoup(data)
             AppProperty.MyResume = soup.find("div", id="MyResume").string
-            AppProperty.UserSpace = soup.find("div","Owner").find("a","Img")["href"]
+            AppProperty.UserSpace = soup.find("div","Owner").find("a","Img")["href"]+"/home"
             self.isUserDataLoaded = 1
             print AppProperty.MyResume
         

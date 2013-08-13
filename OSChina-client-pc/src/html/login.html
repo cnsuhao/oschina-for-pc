@@ -65,7 +65,7 @@
 	            			window.localStorage.password = password;
 	            			window.localStorage.rememberPwd = $("#remember-pwd").is(":checked");
 	            			window.localStorage.autoLogin = $("#auto-login").is(":checked");
-	            			window.localStorage.userSpace = "http://my.oschina.net/u/"+data["oschina"]["user"]["uid"];
+	            			window.localStorage.userSpace = "http://my.oschina.net/u/"+data["oschina"]["user"]["uid"]+"/home";
 	            			parent._service_.setUserSpace(window.localStorage.userSpace);
 	            			parent._service_.getUserDataStart();	
 	                		parent.loginOK(data);
