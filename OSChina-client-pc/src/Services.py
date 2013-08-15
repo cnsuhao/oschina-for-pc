@@ -31,6 +31,12 @@ class Service(QObject):
      
     @pyqtSignature("QString",result="QString")
     def handleTweetHtml(self,html):
+        soup = BeautifulSoup(str(html))
+        soup = soup.find("div",id="OSC_Content")
+        for el in soup.findAll(("style","script")):
+            el.extract()
+        soup.find("div",id="li_loading").extract()
+        html = str(soup)
         html = html.replace("/img/portrait.gif","../imgs/portrait.gif")
         html = html.replace("/js/ke/plugins/emoticons/","../imgs/emoticons/")
         return html

@@ -7,6 +7,7 @@ from PyQt4.QtWebKit import *
 from bs4 import BeautifulSoup
 import httplib2
 import AppProperty
+import Utils
 
 class TweetWindow(QWidget):
     def __init__(self):  
@@ -14,6 +15,8 @@ class TweetWindow(QWidget):
         self.setWindowFlags(Qt.FramelessWindowHint|Qt.WindowStaysOnTopHint|Qt.Popup|Qt.Tool)
         self.setAttribute(Qt.WA_TranslucentBackground,True)
         self.resize(550,520)
+        point = Utils.getDesktopCenterPoint(self)
+        self.move(point["x"],point["y"])
         self.webview = QWebView(self)
         self.webview.settings().setAttribute(QWebSettings.JavascriptEnabled, True)
         self.webview.settings().setAttribute(QWebSettings.DeveloperExtrasEnabled, True)

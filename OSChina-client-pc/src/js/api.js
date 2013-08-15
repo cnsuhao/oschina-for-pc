@@ -2,7 +2,7 @@ var api = {
 	login:function(username,pwd,callback){
 		$.ajax({
 			type:"POST",
-			dataType:"html",
+			dataType:"text",
 			url:LOGIN_VALIDATE_HTTP,
 			data:{
 				username:username,
@@ -35,7 +35,7 @@ var api = {
 					callback(newTweets,hotTweets);
 				}
 			},
-			"html"
+			"text"
 		);
 	},
 	/**
@@ -54,7 +54,7 @@ var api = {
 					callback(json);
 				}
 			},
-			"html"
+			"text"
 		);
 	},
 	/**
@@ -73,7 +73,7 @@ var api = {
 					callback(json.oschina.newslist);
 				}
 			},
-			"html"
+			"text"
 		)
 	},
 	/**
@@ -92,7 +92,7 @@ var api = {
 					callback(json.oschina.blogs);
 				}
 			},
-			"html"
+			"text"
 		)
 	}	
 }

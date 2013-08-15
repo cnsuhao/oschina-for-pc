@@ -15,12 +15,16 @@ import AppProperty
 import base64
 import webbrowser
 from TweetWindow import TweetWindow
+import Utils
 
 class Window(RoundWindow): 
     def __init__(self, url,width,height,windowType=0,handleMethod=""):  
         super(Window, self).__init__()
         self.resize(width,height)
         self.round()
+        point = Utils.getDesktopCenterPoint(self)
+        self.move(point["x"],point["y"])
+        
         self.setWindowTitle(AppProperty.AppTitle)
         self.setWindowIcon(AppProperty.AppIcon)
         self.webview = QWebView(self)
@@ -29,7 +33,7 @@ class Window(RoundWindow):
         self.webview.settings().setAttribute(QWebSettings.LocalContentCanAccessRemoteUrls, True)
         self.webview.settings().setAttribute(QWebSettings.LocalStorageEnabled, True)
         self.webview.settings().setLocalStoragePath(AppProperty.HomeDir+"/data")
-        self.webview.setContextMenuPolicy(Qt.NoContextMenu)
+        #self.webview.setContextMenuPolicy(Qt.NoContextMenu)
         self.webview.settings().setDefaultTextEncoding("utf-8")
         
         self.webview.setGeometry(1,1,self.width()-2,self.height()-2)
