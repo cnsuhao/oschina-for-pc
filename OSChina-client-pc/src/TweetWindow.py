@@ -1,13 +1,9 @@
 #! /usr/bin/env python  
 # -*- coding: utf-8 -*-
-import sys
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from PyQt4.QtWebKit import *
-from bs4 import BeautifulSoup
-import httplib2
-import AppProperty
-import Utils
+import os,AppProperty,Utils
+from PyQt4.QtGui import QWidget
+from PyQt4.QtCore import Qt,QUrl,pyqtSignature
+from PyQt4.QtWebKit import QWebView,QWebSettings
 
 class TweetWindow(QWidget):
     def __init__(self):  
@@ -23,7 +19,7 @@ class TweetWindow(QWidget):
         self.webview.settings().setAttribute(QWebSettings.LocalContentCanAccessRemoteUrls, True)
         self.webview.settings().setAttribute(QWebSettings.LocalStorageEnabled, True)
         self.webview.settings().setLocalStoragePath(AppProperty.HomeDir+"/data")
-        self.webview.setContextMenuPolicy(Qt.NoContextMenu)
+        #self.webview.setContextMenuPolicy(Qt.NoContextMenu)
         self.webview.settings().setDefaultTextEncoding("utf-8")
         self.webview.setGeometry(1,1,self.width()-2,self.height()-2)
         self.webview.page().mainFrame().javaScriptWindowObjectCleared.connect(self.setJavaScriptObject)
@@ -48,24 +44,12 @@ class TweetWindow(QWidget):
     def loadHtml(self):
         if AppProperty.NewTweetHtml!="":
             return AppProperty.NewTweetHtml
-        #过滤html
-        soup = BeautifulSoup(AppProperty.HomeSpaceHtml)
-        for el in soup.findAll("div",id=("OSC_Banner","OSC_Topbar","OSC_Footer","topcontrol","SpaceLeft","SpaceRight","TopBlogs","Logs")):
-            el.extract()
-        soup.find("meta").insert_before(soup.new_tag("base", href="http://my.oschina.net"))
-        soup.find("div",id="OSC_Screen")["style"] = "width:538px;padding:0px;margin-bootom:0px;"
-        soup.find("div",id="SpaceMain")["style"] = "margin:0px;"
-        soup.find("div",id="OSC_Content")["style"] = "margin:0px;"
-        soup.body["style"]="background:none;"
-        soup.head.style.string = soup.head.style.string +'''
-        div{-webkit-user-select: none;}
-        #MyTweetForm{
-            background:none;
-            padding:10px;
-            border:0px;
-        }
-        ''' 
-        ssoup = str(soup).replace("今天你动弹了吗？", "&nbsp;")
-        ssoup = ssoup[0:ssoup.find("//插入新日志")] +"parent.tweetSuccess();"+ ssoup[ssoup.find("var before_upload_image = function(event){")-180:]
-        AppProperty.NewTweetHtml = ssoup
-        return ssoup
+        
+        file_object = open('html/sendTweetPage.html')
+        try:
+            tweetHtml = file_object.read()
+        finally:
+            file_object.close()
+        tweetHtml = tweetHtml.replace("${home}",AppProperty.HomeDir+os.path.sep)
+        AppProperty.NewTweetHtml = tweetHtml
+        return tweetHtml
