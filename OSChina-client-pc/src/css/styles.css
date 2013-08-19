@@ -2074,7 +2074,7 @@ ul#TagSetting li img {
   z-index: 9999;
 }
 #TweetFormPopupArrow {
-  background-image: url('/img/space/up_arrow.gif');
+  background-image: url('../imgs/up_arrow.gif');
   background-repeat: no-repeat;
   padding-top: 5px;
 }
@@ -2158,7 +2158,7 @@ ul#TagSetting li img {
 .Tweet .TweetContent .ref {
   font-size: 9pt;
   margin: 3px 0 0 0;
-  background: url('/img/space/up_arrow.gif') no-repeat 15px 0;
+  background: url('../imgs/up_arrow.gif') no-repeat 15px 0;
   padding-top: 5px;
 }
 .Tweet .TweetContent .ref .p {

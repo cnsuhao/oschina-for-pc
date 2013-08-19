@@ -18,6 +18,7 @@ from TweetWindow import TweetWindow
 import Utils
 
 class Window(RoundWindow): 
+    tweetWin=None
     def __init__(self, url,width,height,windowType=0,handleMethod=""):  
         super(Window, self).__init__()
         self.resize(width,height)
@@ -79,8 +80,11 @@ class Window(RoundWindow):
 
     @pyqtSignature("")
     def openTweetWindow(self):
-        tweetWin = TweetWindow()
-        tweetWin.show()
+        if self.tweetWin!=None:
+            self.tweetWin.show()
+            return 
+        self.tweetWin = TweetWindow()
+        self.tweetWin.show()
         qe = QEventLoop()
         qe.exec_()
     
