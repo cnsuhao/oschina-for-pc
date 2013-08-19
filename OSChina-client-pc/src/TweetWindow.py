@@ -50,6 +50,6 @@ class TweetWindow(QWidget):
             tweetHtml = file_object.read()
         finally:
             file_object.close()
-        tweetHtml = tweetHtml.replace("${home}","file://"+AppProperty.HomeDir+"/")
+        tweetHtml = tweetHtml.replace("${home}","file:///"+AppProperty.HomeDir.replace("\\","/")+"/")
         AppProperty.NewTweetHtml = tweetHtml
         return tweetHtml
