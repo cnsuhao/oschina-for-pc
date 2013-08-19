@@ -5,7 +5,7 @@ Created on 2013-6-2
 
 @author: fants
 '''
-import xmltodict, json,re
+import xmltodict, json,re,os
 from PyQt4.QtCore import pyqtSignature,QObject,QEventLoop
 from PyQt4.QtGui import QMessageBox
 from URLs import URLs
@@ -43,6 +43,7 @@ class Service(QObject):
     
     @pyqtSignature("QString",result="QString")
     def handleTweetDetailHtml(self,html):
+        html = Utils.useLocalResource(html)
         soup = BeautifulSoup(str(html))
         soup.find("meta").insert_before(soup.new_tag("base", href="http://my.oschina.net"))
         soup.find(text=re.compile("top.location=self.location")).parent.extract()

@@ -1,6 +1,6 @@
 #! /usr/bin/env python  
 # -*- coding: utf-8 -*-
-import os,AppProperty,Utils
+import AppProperty,Utils
 from PyQt4.QtGui import QWidget
 from PyQt4.QtCore import Qt,QUrl,pyqtSignature
 from PyQt4.QtWebKit import QWebView,QWebSettings
@@ -50,6 +50,6 @@ class TweetWindow(QWidget):
             tweetHtml = file_object.read()
         finally:
             file_object.close()
-        tweetHtml = tweetHtml.replace("${home}",AppProperty.HomeDir+os.path.sep)
+        tweetHtml = tweetHtml.replace("${home}","file://"+AppProperty.HomeDir+"/")
         AppProperty.NewTweetHtml = tweetHtml
         return tweetHtml

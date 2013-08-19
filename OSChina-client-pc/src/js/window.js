@@ -18,10 +18,10 @@ window.onload=function(){
 }
 
 function loadPage(url){
+	var mframe = $("#main-iframe");
+	mframe.css("background-image","-webkit-gradient(linear, 0 0, 0 30%, from(rgba(255,255,255,0)), to(#ffffff))");
 	$.get(url,null,function(data){
 		data = _service_[_window_.getHandleMethod()](data);
-		var mframe = $("#main-iframe");
-		mframe.css("background-image","-webkit-gradient(linear, 0 0, 0 30%, from(rgba(255,255,255,0)), to(#ffffff))");
 		mframe[0].contentDocument.close();
 		mframe[0].contentDocument.write(data);
 		setTitle(mframe[0].contentDocument.title);			
