@@ -25,7 +25,7 @@ def main(args):
     AppProperty.MainWin = Window("login.html",280,600)
     AppProperty.MainWin.show()
     createTray()
-    sys.exit(app.exec_())
+    app.exec_()
     
 def createTray():
     #托盘
