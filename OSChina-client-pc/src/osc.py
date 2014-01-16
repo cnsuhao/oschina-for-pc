@@ -28,7 +28,7 @@ def main(args):
     app.exec_()
     
 def createTray():
-    #托盘
+    #托盘 
     AppProperty.TrayIcon=QSystemTrayIcon(AppProperty.AppIcon,AppProperty.MainWin)
     AppProperty.TrayIcon.activated.connect(trayClick)
     AppProperty.TrayIcon.setToolTip("OSChina for PC")
