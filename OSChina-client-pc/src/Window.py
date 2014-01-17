@@ -115,7 +115,7 @@ class Window(RoundWindow):
         win = Window(url,width,height,windowType,handleMethod)
         win.show()
         qe = QEventLoop()
-        qe.exec_()
+        qe.exec_() 
     
     @pyqtSignature("",result="QString")
     def getSkinItem(self):
