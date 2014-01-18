@@ -55,7 +55,7 @@ def createTrayMenu(trayIcon):
     return trayIconMenu
     
     
-def initProperty():
+def initProperty(): 
     AppProperty.AppTitle = "OSChina"
     AppProperty.AppIcon = QIcon("imgs/icon.png")
     AppProperty.HomeDir = getcwd()
