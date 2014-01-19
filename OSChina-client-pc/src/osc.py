@@ -48,7 +48,7 @@ def createTrayMenu(trayIcon):
     trayIconMenu.addAction(action)
     action = QAction("取消自动登录",trayIcon)
     action.triggered.connect(AppProperty.MainWin.cancelAutoLogin)
-    trayIconMenu.addAction(action)
+    trayIconMenu.addAction(action) 
     action = QAction("退出",trayIcon)
     action.triggered.connect(QApplication.instance().quit)
     trayIconMenu.addAction(action)
